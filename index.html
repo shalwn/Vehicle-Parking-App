@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#020617">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Parked! - Pro Fleet Commander</title>
+    <title>Parked! - Fleet Command Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -30,9 +30,9 @@
             color: #f8fafc;
         }
 
-        .dark body {
-            background-color: #020617;
-            color: #f8fafc;
+        img {
+            object-fit: cover;
+            object-position: center;
         }
 
         .mesh-bg {
@@ -50,27 +50,27 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         .glass-panel {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .hud-border {
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
         }
 
         @keyframes radar {
             0% { transform: scale(0.8); opacity: 0; }
             50% { opacity: 0.4; }
-            100% { transform: scale(2.2); opacity: 0; }
+            100% { transform: scale(2.4); opacity: 0; }
         }
 
         .radar-ping {
             position: absolute;
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border: 2px solid var(--accent);
             border-radius: 50%;
             animation: radar 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
@@ -78,22 +78,46 @@
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        .btn-hover-effect:active {
-            transform: scale(0.96);
-            transition: transform 0.1s ease;
-        }
-
-        /* Tooltip animation */
+        /* Accessible Tooltips */
         .tooltip {
             visibility: hidden;
             opacity: 0;
             transition: opacity 0.2s, transform 0.2s;
             transform: translateY(5px);
+            pointer-events: none;
         }
-        .has-tooltip:hover .tooltip {
+        .has-tooltip:hover .tooltip, .has-tooltip:focus-within .tooltip {
             visibility: visible;
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        .map-viewport {
+          position: relative;
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+        }
+        
+        /* Fixed: Prevents aspect ratio distortion in iframes */
+        .map-viewport iframe {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 150%;
+          height: 150%;
+          transform: translate(-50%, -50%);
+          border: 0;
+        }
+
+        /* Tactical icon scaling */
+        .icon-container i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
         }
     </style>
 <script type="importmap">

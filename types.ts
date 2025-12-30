@@ -14,12 +14,22 @@ export interface User {
 
 export interface Vehicle {
   id: string;
-  name: string;
+  name: string; // Nickname
+  brand: string;
   model: string;
   plateNumber: string;
   icon: string;
   type: 'sedan' | 'suv' | 'ev' | 'truck' | 'bike';
   color: string;
+}
+
+export interface HealthLog {
+  id: string;
+  vehicleId: string;
+  timestamp: number;
+  description: string;
+  category: 'engine' | 'tyres' | 'battery' | 'general' | 'fuel';
+  aiAnalysis?: string;
 }
 
 export interface WeatherData {
@@ -46,6 +56,7 @@ export interface ParkingSpot {
   area?: string;
   note?: string;
   photoDatas: string[];
+  mapSnapshot?: string; // Base64 or URL of static map for offline use
   parkedAt: number;
   reminderAt?: number;
   isActive: boolean;

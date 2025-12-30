@@ -1,13 +1,14 @@
 
-import { ParkingSpot, Vehicle, EmergencyContact } from './types';
+import { ParkingSpot, Vehicle, EmergencyContact, HealthLog } from './types';
 
 const STORAGE_KEY = 'parked_app_v2';
 
 const DEFAULT_VEHICLES: Vehicle[] = [
   { 
     id: 'v1', 
-    name: 'Primary Vehicle', 
-    model: 'Tesla Model 3', 
+    name: 'Main Ride', 
+    brand: 'Tesla',
+    model: 'Model 3', 
     plateNumber: 'MH-12-PA-777', 
     icon: 'fa-car-side', 
     type: 'ev',
@@ -57,4 +58,15 @@ export const clearActiveSpot = (vehicleId: string): void => {
 export const getHistory = (): ParkingSpot[] => {
   const data = localStorage.getItem(STORAGE_KEY + '_history');
   return data ? JSON.parse(data) : [];
+}
+
+export const getHealthLogs = (vehicleId: string): HealthLog[] => {
+  const data = localStorage.getItem(STORAGE_KEY + '_health_' + vehicleId);
+  return data ? JSON.parse(data) : [];
+}
+
+export const addHealthLog = (log: HealthLog): void => {
+  const logs = getHealthLogs(log.vehicleId);
+  logs.unshift(log);
+  localStorage.setItem(STORAGE_KEY + '_health_' + log.vehicleId, JSON.stringify(logs.slice(0, 100)));
 }
