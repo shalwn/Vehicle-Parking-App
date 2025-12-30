@@ -1,0 +1,9 @@
+{
+  "name": "Parking Assistance Application",
+  "description": "Never forget where you parked with one-tap location saving, photo notes, and navigation back to your vehicle.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
